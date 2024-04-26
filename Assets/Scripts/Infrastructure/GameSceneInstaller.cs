@@ -1,4 +1,5 @@
-﻿using Pooling.Pools;
+﻿using Controllers;
+using Pooling.Pools;
 using Spawners;
 using UnityEngine;
 using Zenject;
@@ -10,11 +11,15 @@ namespace Infrastructure
         [SerializeField] private ObstaclesPool obstaclesPool;
         
         [SerializeField] private ObstaclesSpawner obstaclesSpawner;
+
+        [SerializeField] private ScoreCounter scoreCounter;
+        [SerializeField] private GameFinisher gameFinisher;
         
         public override void InstallBindings()
         {
             InstallPools();
             InstallSpawners();
+            InstallControllers();
         }
         
         private void InstallPools()
@@ -36,6 +41,19 @@ namespace Infrastructure
                 .Bind<GroundReSpawner>()
                 .FromComponentInHierarchy()
                 .AsTransient();
+        }
+
+        private void InstallControllers()
+        {
+            Container
+                .Bind<ScoreCounter>()
+                .FromInstance(scoreCounter)
+                .AsSingle();
+            
+            Container
+                .Bind<GameFinisher>()
+                .FromInstance(gameFinisher)
+                .AsSingle();
         }
     }
 }

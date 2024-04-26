@@ -74,3 +74,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca28315470a43f09e8bc84d6056407a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneTransitionAnimation: {fileID: 8250281104684806384, guid: 98cdc7f4ecfbfc848915827bfcec4d0e, type: 3}

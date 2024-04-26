@@ -4,7 +4,7 @@ namespace Moving
 {
     public class ObjectMover : MonoBehaviour
     {
-        private readonly float _speed = 10f;
+        private readonly float _speed = 12f;
         private Vector3 _moveVector;
 
         private void Start()

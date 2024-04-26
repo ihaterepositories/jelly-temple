@@ -26,24 +26,24 @@ namespace Spawners
             if (transform.position.z < -20)
             {
                 Hide();
-                StartCoroutine(ChangeScaleCoroutine(24f, 0f));
+                StartCoroutine(ChangeScaleCoroutine(24, 0f));
             }
             
             if (transform.position.z < -24f)
             {
                 Show();
-                StartCoroutine(ChangeScaleCoroutine(8f, 2f));
+                StartCoroutine(ChangeScaleCoroutine(3, 2f));
             }
         }
 
         private void Hide()
         {
-            transform.DOMoveY(-90f, 1.5f);
+            transform.DOMoveY(-50f, 1.5f);
         }
 
         private void Show()
         {
-            transform.position = new Vector3(0f, -90f, 48f);
+            transform.position = new Vector3(0f, -50f, 48f);
             _obstaclesSpawner.SpawnObstacle();
             RandomizeYPosition();
         }
@@ -56,7 +56,7 @@ namespace Spawners
         private IEnumerator ChangeScaleCoroutine(float zValue, float delay)
         {
             yield return new WaitForSeconds(delay);
-            transform.DOScale(new Vector3(10.5f, 2f, zValue), 1f);
+            transform.DOScale(new Vector3(9, 2, zValue), 1f);
         }
     }
 }

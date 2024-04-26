@@ -17,7 +17,7 @@ namespace Spawners
         
         public void SpawnObstacle()
         {
-            var randomObstacle = Random.Range(0, 2);
+            var randomObstacle = Random.Range(0, 3);
             var randomPosition = Random.Range(1, 4);
             
             while (randomPosition == _lastPosition)
@@ -27,15 +27,20 @@ namespace Spawners
             
             _lastPosition = randomPosition;
             
-            if(randomObstacle == 0)
+            switch (randomObstacle)
             {
-                var redObstacle = _obstaclesPool.GetRedObstacle();
-                SetPosition(redObstacle.gameObject, randomPosition);
-            }
-            else
-            {
-                var yellowObstacle = _obstaclesPool.GetYellowObstacle();
-                SetPosition(yellowObstacle.gameObject, randomPosition);
+                case 0:
+                    var redObstacle = _obstaclesPool.GetRedObstacle();
+                    SetPosition(redObstacle.gameObject, randomPosition);
+                    break;
+                case 1:
+                    var yellowObstacle = _obstaclesPool.GetYellowObstacle();
+                    SetPosition(yellowObstacle.gameObject, randomPosition);
+                    break;
+                case 2:
+                    var greenObstacle = _obstaclesPool.GetGreenObstacle();
+                    SetPosition(greenObstacle.gameObject, randomPosition);
+                    break;
             }
         }
         
@@ -43,9 +48,9 @@ namespace Spawners
         {
             switch (randomPosition)
             {
-                case 1: obstacle.transform.position = new Vector3(-3.5f, 30f, 48f); break;
-                case 2: obstacle.transform.position = new Vector3(0f, 30f, 48f); break;
-                case 3: obstacle.transform.position = new Vector3(3.5f, 30f, 48f); break;
+                case 1: obstacle.transform.position = new Vector3(-3, 30, 47.85f); break;
+                case 2: obstacle.transform.position = new Vector3(0, 30, 47.85f); break;
+                case 3: obstacle.transform.position = new Vector3(3, 30, 47.85f); break;
             }
         }
     }

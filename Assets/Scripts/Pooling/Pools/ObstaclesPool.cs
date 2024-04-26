@@ -6,28 +6,37 @@ namespace Pooling.Pools
 {
     public class ObstaclesPool : MonoBehaviour
     {
-        [SerializeField] private RedObstacle redObstaclePrefab;
-        [SerializeField] private YellowObstacle yellowObstaclePrefab;
+        [SerializeField] private Obstacle redObstaclePrefab;
+        [SerializeField] private Obstacle yellowObstaclePrefab;
+        [SerializeField] private Obstacle greenObstaclePrefab;
         
-        private ObjectPool<RedObstacle> _redObstaclePool;
-        private ObjectPool<YellowObstacle> _yellowObstaclePool;
+        private ObjectPool<Obstacle> _redObstaclePool;
+        private ObjectPool<Obstacle> _yellowObstaclePool;
+        private ObjectPool<Obstacle> _greenObstaclePool;
         
         private void Awake()
         {
-            _redObstaclePool = new ObjectPool<RedObstacle>(redObstaclePrefab);
-            _yellowObstaclePool = new ObjectPool<YellowObstacle>(yellowObstaclePrefab);
+            _redObstaclePool = new ObjectPool<Obstacle>(redObstaclePrefab);
+            _yellowObstaclePool = new ObjectPool<Obstacle>(yellowObstaclePrefab);
+            _greenObstaclePool = new ObjectPool<Obstacle>(greenObstaclePrefab);
         }
         
-        public RedObstacle GetRedObstacle()
+        public Obstacle GetRedObstacle()
         {
             var poolAble = _redObstaclePool.GetFreeObject();
-            return poolAble as RedObstacle;
+            return poolAble as Obstacle;
         }
         
-        public YellowObstacle GetYellowObstacle()
+        public Obstacle GetYellowObstacle()
         {
             var poolAble = _yellowObstaclePool.GetFreeObject();
-            return poolAble as YellowObstacle;
+            return poolAble as Obstacle;
+        }
+        
+        public Obstacle GetGreenObstacle()
+        {
+            var poolAble = _greenObstaclePool.GetFreeObject();
+            return poolAble as Obstacle;
         }
     }
 }
