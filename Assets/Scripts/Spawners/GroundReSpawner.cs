@@ -32,7 +32,7 @@ namespace Spawners
             if (transform.position.z < -24f)
             {
                 Show();
-                StartCoroutine(ChangeScaleCoroutine(3, 2f));
+                StartCoroutine(ChangeScaleCoroutine(3, 1.5f));
             }
         }
 

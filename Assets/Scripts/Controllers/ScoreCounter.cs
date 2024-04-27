@@ -39,6 +39,7 @@ namespace Controllers
         }
 
         private void IncreaseScore() => Score += 10;
+        
         private void DecreaseScore() => Score -= 10;
         
         public void StopCounting()

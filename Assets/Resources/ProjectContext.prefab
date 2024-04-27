@@ -75,3 +75,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneTransitionAnimation: {fileID: 8250281104684806384, guid: 98cdc7f4ecfbfc848915827bfcec4d0e, type: 3}
+  userInterfaceSoundsPlayer: {fileID: 8484282846918473402, guid: ec617eee340928c4db0b5d9d452b205d, type: 3}

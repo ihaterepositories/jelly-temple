@@ -1,15 +1,19 @@
-﻿using Loaders;
+﻿using System;
+using Loaders;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace UserInterface.ButtonControllers
 {
-    public class SceneLoadingFromButton : MonoBehaviour
+    public class SceneLoadingButton : MonoBehaviour
     {
         [SerializeField] private Button button;
         [SerializeField] private string nextSceneAddress;
+        
         private ScenesLoader _scenesLoader;
+
+        public static event Action OnClicked;
         
         [Inject]
         private void Construct(ScenesLoader scenesLoader)
@@ -24,6 +28,7 @@ namespace UserInterface.ButtonControllers
 
         private void OnClick()
         {
+            OnClicked?.Invoke();
             StartCoroutine(_scenesLoader.LoadSceneCoroutine(nextSceneAddress));
         }
     }

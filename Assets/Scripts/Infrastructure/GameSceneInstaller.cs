@@ -1,5 +1,8 @@
 ﻿using Controllers;
+using Models;
+using Moving;
 using Pooling.Pools;
+using Sound;
 using Spawners;
 using UnityEngine;
 using Zenject;
@@ -14,6 +17,10 @@ namespace Infrastructure
 
         [SerializeField] private ScoreCounter scoreCounter;
         [SerializeField] private GameFinisher gameFinisher;
+        [SerializeField] private GameSoundsPlayer gameSoundsPlayer;
+        
+        [SerializeField] private SlimeMover slimeMover;
+        [SerializeField] private Slime slime;
         
         public override void InstallBindings()
         {
@@ -53,6 +60,21 @@ namespace Infrastructure
             Container
                 .Bind<GameFinisher>()
                 .FromInstance(gameFinisher)
+                .AsSingle();
+            
+            Container
+                .Bind<SlimeMover>()
+                .FromInstance(slimeMover)
+                .AsSingle();
+            
+            Container
+                .Bind<Slime>()
+                .FromInstance(slime)
+                .AsSingle();
+
+            Container
+                .Bind<GameSoundsPlayer>()
+                .FromInstance(gameSoundsPlayer)
                 .AsSingle();
         }
     }

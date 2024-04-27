@@ -1,6 +1,8 @@
 ﻿using System;
 using Models;
+using Sound;
 using UnityEngine;
+using Zenject;
 
 namespace Moving
 {
@@ -17,9 +19,17 @@ namespace Moving
         private int _jumpCount;
         private int _xPosition;
         
+        private GameSoundsPlayer _gameSoundsPlayer;
+        
         private Vector3 Velocity => rb.velocity;
         
         public static event Action<int> OnXPositionChanged;
+        
+        [Inject]
+        private void Construct(GameSoundsPlayer gameSoundsPlayer)
+        {
+            _gameSoundsPlayer = gameSoundsPlayer;
+        }
 
         private void Update()
         {
@@ -27,14 +37,17 @@ namespace Moving
             SetBounds();
         }
 
-        private void OnCollisionEnter()
+        private void OnCollisionEnter(Collision other)
         {
+            if (!other.gameObject.CompareTag("Ground")) return;
             _isGrounded = true;
             _jumpCount = 0;
+            _gameSoundsPlayer.PlayLandingSound();
         }
 
-        private void OnCollisionExit()
+        private void OnCollisionExit(Collision other)
         {
+            if (!other.gameObject.CompareTag("Ground")) return;
             _isGrounded = false;
         }
 
@@ -65,11 +78,13 @@ namespace Moving
         {
             rb.velocity = new Vector3(Velocity.x, _jumpForce, Velocity.z);
             _jumpCount++;
+            _gameSoundsPlayer.PlayJumpSound();
         }
         
         private void Drop()
         {
             rb.velocity = new Vector3(Velocity.x, -_dropForce, Velocity.z);
+            _gameSoundsPlayer.PlayDropSound();
         }
         
         private void Move(int direction)

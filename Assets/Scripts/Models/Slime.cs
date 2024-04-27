@@ -1,6 +1,8 @@
 ﻿using System;
 using Effects;
+using Sound;
 using UnityEngine;
+using Zenject;
 
 namespace Models
 {
@@ -11,9 +13,17 @@ namespace Models
         [SerializeField] private OneHitEffectPlayer yellowFrictionEffect;
         [SerializeField] private OneHitEffectPlayer redFrictionEffect;
 
+        private GameSoundsPlayer _gameSoundsPlayer;
+        
         public static event Action OnKilled;
         public static event Action OnCollidedWithYellowObstacle;
         public static event Action OnCollidedWithGreenObstacle;
+        
+        [Inject]
+        private void Construct(GameSoundsPlayer gameSoundsPlayer)
+        {
+            _gameSoundsPlayer = gameSoundsPlayer;
+        }
 
         private void OnCollisionEnter(Collision other)
         {
@@ -37,6 +47,7 @@ namespace Models
         public void Kill()
         {
             OnKilled?.Invoke();
+            _gameSoundsPlayer.PlaySplashSound();
             ShowExplosion();
             Destroy(gameObject);
         }
