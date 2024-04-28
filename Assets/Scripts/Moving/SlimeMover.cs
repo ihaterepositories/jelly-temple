@@ -1,4 +1,6 @@
 ﻿using System;
+using Controllers;
+using DG.Tweening;
 using Models;
 using Sound;
 using UnityEngine;
@@ -39,16 +41,30 @@ namespace Moving
 
         private void OnCollisionEnter(Collision other)
         {
-            if (!other.gameObject.CompareTag("Ground")) return;
-            _isGrounded = true;
-            _jumpCount = 0;
-            _gameSoundsPlayer.PlayLandingSound();
+            var tagsContainer = other.gameObject.GetComponent<TagsContainer>();
+            
+            if (tagsContainer is not null)
+            {
+                if (tagsContainer.HasTag("Ground"))
+                {
+                    _isGrounded = true;
+                    _jumpCount = 0;
+                    _gameSoundsPlayer.PlayLandingSound();
+                }
+            }
         }
 
         private void OnCollisionExit(Collision other)
         {
-            if (!other.gameObject.CompareTag("Ground")) return;
-            _isGrounded = false;
+            var tagsContainer = other.gameObject.GetComponent<TagsContainer>();
+            
+            if (tagsContainer is not null)
+            {
+                if (tagsContainer.HasTag("Ground"))
+                {
+                    _isGrounded = false;
+                }
+            }
         }
 
         private void ConfigureMoveInput()
@@ -79,6 +95,7 @@ namespace Moving
             rb.velocity = new Vector3(Velocity.x, _jumpForce, Velocity.z);
             _jumpCount++;
             _gameSoundsPlayer.PlayJumpSound();
+            transform.DORotate(new Vector3(360, 0, 0), 0.5f, RotateMode.FastBeyond360);
         }
         
         private void Drop()

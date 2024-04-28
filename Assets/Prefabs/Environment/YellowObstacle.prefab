@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7745930513670682493}
   - component: {fileID: 5446189262896707810}
   - component: {fileID: 8121493793981489307}
+  - component: {fileID: 8926879303390056817}
   m_Layer: 0
   m_Name: YellowObstacle
   m_TagString: YellowObstacle
@@ -160,6 +161,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb8390a0bf254ad08fd3798a89271be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8926879303390056817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244051366557805870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029a8711f2fc44898a717233f76da592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customTags:
+  - Ground
 --- !u!1 &2616950071551995441
 GameObject:
   m_ObjectHideFlags: 0
