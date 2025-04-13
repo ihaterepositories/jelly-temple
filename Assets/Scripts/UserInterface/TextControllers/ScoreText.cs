@@ -1,6 +1,7 @@
 ﻿using Controllers;
+using Creatures;
+using Creatures.Player;
 using DG.Tweening;
-using Models;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -29,14 +30,14 @@ namespace UserInterface.TextControllers
 
         private void OnEnable()
         {
-            Slime.OnCollidedWithYellowObstacle += BlinkYellow;
-            Slime.OnCollidedWithGreenObstacle += BlinkGreen;
+            PlayerCore.OnCollidedWithYellowObstacle += BlinkYellow;
+            PlayerCore.OnCollidedWithGreenObstacle += BlinkGreen;
         }
         
         private void OnDisable()
         {
-            Slime.OnCollidedWithYellowObstacle -= BlinkYellow;
-            Slime.OnCollidedWithGreenObstacle -= BlinkGreen;
+            PlayerCore.OnCollidedWithYellowObstacle -= BlinkYellow;
+            PlayerCore.OnCollidedWithGreenObstacle -= BlinkGreen;
         }
 
         private void BlinkYellow()

@@ -1,5 +1,6 @@
-﻿using DG.Tweening;
-using Models;
+﻿using Creatures;
+using Creatures.Player;
+using DG.Tweening;
 using Moving;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,17 +29,17 @@ namespace Controllers
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
-                ShowMenu();
+                FinishGame();
         }
 
         private void OnEnable()
         {
-            Slime.OnKilled += FinishGame;
+            PlayerCore.OnKilled += FinishGame;
         }
         
         private void OnDisable()
         {
-            Slime.OnKilled -= FinishGame;
+            PlayerCore.OnKilled -= FinishGame;
         }
 
         private void FinishGame()

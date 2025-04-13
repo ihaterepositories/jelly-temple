@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using Models;
+using Creatures.Player;
 using UnityEngine;
 
 namespace Controllers
@@ -18,14 +18,14 @@ namespace Controllers
 
         private void OnEnable()
         {
-            Slime.OnCollidedWithGreenObstacle += IncreaseScore;
-            Slime.OnCollidedWithYellowObstacle += DecreaseScore;
+            PlayerCore.OnCollidedWithGreenObstacle += IncreaseScore;
+            PlayerCore.OnCollidedWithYellowObstacle += DecreaseScore;
         }
         
         private void OnDisable()
         {
-            Slime.OnCollidedWithGreenObstacle -= IncreaseScore;
-            Slime.OnCollidedWithYellowObstacle -= DecreaseScore;
+            PlayerCore.OnCollidedWithGreenObstacle -= IncreaseScore;
+            PlayerCore.OnCollidedWithYellowObstacle -= DecreaseScore;
         }
 
         private IEnumerator IncreaseScoreByRuntimeCoroutine()

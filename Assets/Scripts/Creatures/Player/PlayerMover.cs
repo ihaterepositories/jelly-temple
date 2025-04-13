@@ -1,17 +1,16 @@
 ﻿using System;
-using Controllers;
 using DG.Tweening;
-using Models;
 using Sound;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
-namespace Moving
+namespace Creatures.Player
 {
-    public class SlimeMover : MonoBehaviour
+    public class PlayerMover : MonoBehaviour
     {
         [SerializeField] private Rigidbody rb;
-        [SerializeField] private Slime slime;
+        [FormerlySerializedAs("player")] [FormerlySerializedAs("slime")] [SerializeField] private PlayerCore playerCore;
         
         private readonly int _maxJumps = 2;
         private readonly float _jumpForce = 20f;
@@ -41,29 +40,19 @@ namespace Moving
 
         private void OnCollisionEnter(Collision other)
         {
-            var tagsContainer = other.gameObject.GetComponent<TagsContainer>();
-            
-            if (tagsContainer is not null)
+            if (other.gameObject.CompareTag("Ground"))
             {
-                if (tagsContainer.HasTag("Ground"))
-                {
-                    _isGrounded = true;
-                    _jumpCount = 0;
-                    _gameSoundsPlayer.PlayLandingSound();
-                }
+                _isGrounded = true;
+                _jumpCount = 0;
+                _gameSoundsPlayer.PlayLandingSound();
             }
         }
 
         private void OnCollisionExit(Collision other)
         {
-            var tagsContainer = other.gameObject.GetComponent<TagsContainer>();
-            
-            if (tagsContainer is not null)
+            if (other.gameObject.CompareTag("Ground"))
             {
-                if (tagsContainer.HasTag("Ground"))
-                {
-                    _isGrounded = false;
-                }
+                _isGrounded = false;
             }
         }
 
@@ -126,12 +115,12 @@ namespace Moving
         {
             if (transform.position.y < -15f)
             {
-                slime.Kill();
+                playerCore.Kill();
             }
             
             if (transform.position.x is < -3.5f or > 3.5f)
             {
-                slime.Kill();
+                playerCore.Kill();
             }
         }
     }

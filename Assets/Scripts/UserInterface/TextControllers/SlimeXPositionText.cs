@@ -1,4 +1,5 @@
-﻿using Moving;
+﻿using Creatures.Player;
+using Moving;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,12 +16,12 @@ namespace UserInterface.TextControllers
 
         private void OnEnable()
         {
-            SlimeMover.OnXPositionChanged += SetText;
+            PlayerMover.OnXPositionChanged += SetText;
         }
         
         private void OnDisable()
         {
-            SlimeMover.OnXPositionChanged -= SetText;
+            PlayerMover.OnXPositionChanged -= SetText;
         }
 
         private void SetText(int xPosition)

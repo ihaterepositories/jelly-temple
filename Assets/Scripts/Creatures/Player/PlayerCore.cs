@@ -4,9 +4,9 @@ using Sound;
 using UnityEngine;
 using Zenject;
 
-namespace Models
+namespace Creatures.Player
 {
-    public class Slime : MonoBehaviour
+    public class PlayerCore : MonoBehaviour
     {
         [SerializeField] private OneHitEffectPlayer explosionEffect;
         [SerializeField] private OneHitEffectPlayer greenFrictionEffect;
